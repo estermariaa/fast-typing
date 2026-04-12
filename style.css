@@ -1,0 +1,99 @@
+* { /*Todos os elementos */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Não muda o tamanho do botão se adicionar borda */
+    font-family: 'Courier New', Courier, monospace; /* Fonte estilo código */
+}
+
+body {
+    background-color: #282a36; /* Cor de fundo*/
+    color: #f8f8f2; /* Cor do texto*/
+    height: 100vh; /* Altura da tela, vh pega a altura da tela do usuário*/
+    display: flex; /* Organiza os elementos de forma responsiva */
+    flex-direction: column; /* Empilha os itens: header, main, footer */
+    padding: 2rem;
+}
+
+#top-bar {
+    display: flex;
+    justify-content: space-between; /* Logo para um laod, botões para o outro */
+    align-items: center; /* Alinha os textos verticalmente */
+    margin-bottom: 50px; /* Garante que o jogo não encoste na barra superior. */
+}
+
+#top-bar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff79c6; 
+}
+
+nav button {
+    background: none;
+    border: none;
+    color: #646669;
+    cursor: pointer;
+    margin-left: 15px;
+    transition: 0.3s;
+}
+
+nav button:hover {
+    color: #d1d0c5;
+}
+
+#game-container {
+    flex-grow: 1; /* Faz o main ocupar o espaço restante */
+    display: flex;
+    justify-content: center; /* Centraliza na horizontal */
+    align-items: center; /* Centraliza na vertical */
+    text-align: center; /* Garante que se o texto quebrar linha, ele continue centralizado. */
+}
+
+/* Estilo para esconder as telas */
+.hidden {
+    display: none !important;
+}
+
+/* Estilo do Jogo e Palavras */
+#words-display {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    max-width: 800px;
+    color: #6272a4; /* Palavras que ainda não foram digitadas ficam "apagadas" */
+    margin-bottom: 20px;
+}
+
+/* Input Invisível: o usuário pensa que está digitando nas palavras */
+#typing-input {
+    position: absolute;
+    opacity: 0; 
+}
+
+/* Barra de Baixo (Footer) */
+#config-bar {
+    display: flex;
+    justify-content: center; /* Deixa os botões de dificuldade bem no meio da parte de baixo. */
+    gap: 20px; /* Cria um espaço automático entre os botões */
+    padding: 20px;
+}
+
+.level-button {
+    background: none;
+    border: none;
+    color: #646669;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.level-button.active {
+    color: #14e2e2; /* Indica qual nível está selecionado */
+}
+
+.correto {
+    color: #22ce4a !important; /* Branco quando acerta */
+}
+
+.incorreto {
+    color: #ff5555 !important;
+    background-color: rgba(255, 85, 85, 0.2);
+    border-radius: 2px;
+}
