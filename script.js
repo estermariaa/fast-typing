@@ -17,6 +17,7 @@ const bancoDeTextos = {
 };
 
 let nivelSelecionado = "medio";
+let totalErrosPartida = 0;
 
 // Pegando os elementos do HTML 
 const buttonComeçar = document.getElementById('start-game-button');
@@ -30,6 +31,7 @@ const botoesDificuldade = document.querySelectorAll('.level-button');
 // Funções de ação ---------------------------------------------------
 
 function carregarTexto() {
+    totalErrosPartida = 0; // Resetar os erros sempre que um novo texto carregar
     // Escolhe um texto aleatório do nível selecionado
     const lista = bancoDeTextos[nivelSelecionado];
     const textoAleatorio = lista[Math.floor(Math.random() * lista.length)];
@@ -64,7 +66,7 @@ function iniciarJogo() {
 }
 
 function finalizarPartida() {
-    alert("Parabéns! Você terminou a frase.");
+    alert(`Parabéns! Você terminou a frase. Você teve o total de erros: ${totalErrosPartida}`);
     
     telaJogo.classList.add('hidden');
     document.getElementById('screen-ranking').classList.remove('hidden');
@@ -101,6 +103,7 @@ campoDigitação.addEventListener('input', () => {
         return;
     }
 
+
     arrayLetras.forEach((span, index) => {
         const caractereOriginal = span.innerText;
         const caractereDigitado = arrayValor[index];
@@ -116,6 +119,7 @@ campoDigitação.addEventListener('input', () => {
             // Se errou
             span.classList.add('incorreto');
             span.classList.remove('correto');
+            totalErrosPartida+=1;
         }
     });
 
