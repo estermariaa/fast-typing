@@ -48,6 +48,70 @@ nav button:hover {
     text-align: center; /* Garante que se o texto quebrar linha, ele continue centralizado. */
 }
 
+#player-name {
+    background-color: #252533;
+    color: #d1d0c5;
+    border: 2px solid #20202C;
+    border-radius: 3px;
+    padding: 10px 22px; /* Espaçamento interno: cima/baixo e lados */
+    font-size: 1.1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 300px;              /* Largura fixa para não ficar esticado */
+}
+
+/* Efeito quando o jogador clica para digitar */
+#player-name:focus {
+    border-color: #ff79c6;
+}
+
+/* Estilo do texto de ajuda (Placeholder) */
+#player-name::placeholder {
+    color: #d1d0c5;
+    opacity: 0.7;
+}
+
+#start-game-button {
+    background-color: #252533;
+    color: #d1d0c5;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#start-game-button:hover {
+    background-color: #bd93f9; /* Muda para roxo ao passar o mouse */
+    transform: scale(1.05);    /* Dá um leve "pulo" ao passar o mouse */
+}
+
+/* Container para alinhar cronômetro e erros lado a lado */
+.stats-container {
+    display: inline-flex; /* Faz o container ter a largura do conteúdo */
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Espaço entre o tempo e os erros */
+
+    background-color: #252533;
+    padding: 10px 22px; /* Espaçamento interno: cima/baixo e lados */
+    border-radius: 3px;
+    margin-bottom: 35px;
+}
+
+#timer-display, #error-display {
+    background: none;
+    padding: 0;
+    color: #ff79c6;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
 /* Estilo para esconder as telas */
 .hidden {
     display: none !important;
@@ -96,4 +160,36 @@ nav button:hover {
     color: #ff5555 !important;
     background-color: rgba(255, 85, 85, 0.2);
     border-radius: 2px;
+}
+
+.cursor{
+    border-left: 2px solid #ff79c6;
+    animation: piscar 1s infinite;
+    margin-left: -1px;
+}
+
+@keyframes piscar {
+    0%, 100% {border-color: transparent; }
+    50% {border-color: #ff79c6; }
+}
+
+#restart-button {
+    align-items: center;
+
+    background-color: transparent;
+    border: #00000000;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+/* Estilo específico para a foto dentro do botão */
+#restart-icon {
+    width: 25px;  /* Define a largura da imagem */
+    height: 25px; /* Define a altura da imagem */
+}
+
+/* Faz a imagem ficar branca quando passas o rato (se for SVG ou via filtro) */
+#restart-button:hover #restart-icon {
+    filter: brightness(0) invert(1);
 }

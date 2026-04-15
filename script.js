@@ -18,6 +18,8 @@ const bancoDeTextos = {
 
 let nivelSelecionado = "medio";
 let totalErrosPartida = 0;
+let tempoInicial = 0;
+let cronometro;
 
 // Pegando os elementos do HTML 
 const buttonComeçar = document.getElementById('start-game-button');
@@ -27,11 +29,15 @@ const inputNome = document.getElementById('player-name');
 const campoDigitação = document.getElementById('typing-input');
 const displayPalavras = document.getElementById('words-display');
 const botoesDificuldade = document.querySelectorAll('.level-button');
+const displayTimer = document.getElementById('timer-display');
+const displayError = document.getElementById('error-display');
+const btnReiniciar = document.getElementById('restart-button');
 
 // Funções de ação ---------------------------------------------------
 
 function carregarTexto() {
     totalErrosPartida = 0; // Resetar os erros sempre que um novo texto carregar
+    displayError.innerText = `Erros: 0`;
     // Escolhe um texto aleatório do nível selecionado
     const lista = bancoDeTextos[nivelSelecionado];
     const textoAleatorio = lista[Math.floor(Math.random() * lista.length)];
@@ -42,6 +48,8 @@ function carregarTexto() {
     }).join('');
 
     campoDigitação.value = ""; // Limpa o input para começar novo
+
+    atualizarCursor();
 }
 
 function iniciarJogo() {
@@ -54,6 +62,7 @@ function iniciarJogo() {
     }
 
     carregarTexto();
+    iniciarCronometro();
 
     // Trocamos as classes para mudar o que aparece na tela
     telaSetup.classList.add('hidden'); // Esconde a tela de nome
@@ -66,10 +75,45 @@ function iniciarJogo() {
 }
 
 function finalizarPartida() {
+    clearInterval(cronometro);
+
     alert(`Parabéns! Você terminou a frase. Você teve o total de erros: ${totalErrosPartida}`);
     
     telaJogo.classList.add('hidden');
     document.getElementById('screen-ranking').classList.remove('hidden');
+}
+
+function resetarPartida() {
+    clearInterval(cronometro); 
+    carregarTexto();           // Sorteia novo texto, zera erros visualmente e variáveis
+    iniciarCronometro();       // Zera o tempo e começa a contar
+    campoDigitação.focus();    // Garante que o teclado continue ativo
+}
+
+function atualizarCursor(){
+    const arrayLetras = displayPalavras.querySelectorAll('span');
+    const posicaoAtual = campoDigitação.value.length;
+
+    // Remove o cursor de qualquer letra que já o tenha
+    arrayLetras.forEach(span => span.classList.remove('cursor'));
+
+    // Adiciona o cursor na letra da posição atual
+    if (posicaoAtual < arrayLetras.length) {
+        arrayLetras[posicaoAtual].classList.add('cursor');
+    }
+}
+
+function iniciarCronometro(){
+    tempoInicial = 0;
+    displayTimer.innerText = `Tempo: 0s`;
+
+    // Limpa qualquer cronômetro que já esteja rodando
+    clearInterval(cronometro)
+
+    cronometro = setInterval(() => {
+        tempoInicial++;
+        displayTimer.innerText = `Tempo: ${tempoInicial}s`;
+    }, 1000);
 }
 
 // Gatilhos ----------------------------------------------
@@ -92,10 +136,12 @@ botoesDificuldade.forEach(botao => {
     });
 });
 
-campoDigitação.addEventListener('input', () => {
+campoDigitação.addEventListener('input', (event) => {
     const arrayLetras = displayPalavras.querySelectorAll('span');
     const valorDigitado = campoDigitação.value;
     const arrayValor = valorDigitado.split('');
+
+    const apagando = event.inputType === 'deleteContentBackward';
 
     // Impede que o usuário digite mais do que o tamanho da frase
     if (valorDigitado.length > arrayLetras.length) {
@@ -117,9 +163,16 @@ campoDigitação.addEventListener('input', () => {
             span.classList.remove('incorreto');
         } else {
             // Se errou
+
+            if (!apagando) {
+                if (!span.classList.contains('incorreto')) {
+                    totalErrosPartida += 1;
+                    displayError.innerText = `Erros: ${totalErrosPartida}`;
+                }
+            }
+
             span.classList.add('incorreto');
             span.classList.remove('correto');
-            totalErrosPartida+=1;
         }
     });
 
@@ -128,4 +181,8 @@ campoDigitação.addEventListener('input', () => {
     if (valorDigitado === displayPalavras.innerText) {
         finalizarPartida();
     }
+
+    atualizarCursor();
 });
+
+btnReiniciar.addEventListener('click', resetarPartida);
