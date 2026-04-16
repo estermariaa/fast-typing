@@ -193,3 +193,82 @@ nav button:hover {
 #restart-button:hover #restart-icon {
     filter: brightness(0) invert(1);
 }
+
+#screen-ranking {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 700px;
+}
+
+#screen-ranking h2 {
+    font-size: 1.5rem;
+    color: #ff79c6;
+    margin-bottom: 8px;
+}
+
+#ranking-list {
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ranking-header {
+    display: grid;
+    grid-template-columns: 40px 1fr 100px 180px;
+    gap: 16px;
+    padding: 0 20px 8px;
+    font-size: 0.75rem;
+    color: #6272a4;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid #44475a;
+}
+
+.ranking-item {
+    display: grid;
+    grid-template-columns: 40px 1fr 100px 180px;
+    /*                     #1   nome  pts   detalhes  */
+    align-items: center;
+    gap: 16px;
+    background-color: #252533;
+    padding: 14px 20px;
+    border-radius: 6px;
+    border-left: 3px solid #44475a;
+    transition: border-color 0.2s ease;
+}
+
+.ranking-item:hover {
+    border-left-color: #ff79c6;
+}
+
+.ranking-posicao {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #6272a4;
+    min-width: 32px;
+}
+
+.ranking-nome {
+    flex-grow: 1; /* empurra o resto para a direita */
+    font-size: 1rem;
+    color: #f8f8f2;
+    font-weight: bold;
+}
+
+.ranking-score {
+    font-size: 1rem;
+    color: #ff79c6;
+    font-weight: bold;
+}
+
+.ranking-detalhe {
+    font-size: 0.8rem;
+    color: #6272a4;
+    min-width: 180px;
+    text-align: left;
+}

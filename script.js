@@ -25,6 +25,7 @@ let cronometro;
 const buttonComeçar = document.getElementById('start-game-button');
 const telaSetup = document.getElementById('screen-setup');
 const telaJogo = document.getElementById('screen-game');
+const telaRanking = document.getElementById('screen-ranking');
 const inputNome = document.getElementById('player-name');
 const campoDigitação = document.getElementById('typing-input');
 const displayPalavras = document.getElementById('words-display');
@@ -32,6 +33,8 @@ const botoesDificuldade = document.querySelectorAll('.level-button');
 const displayTimer = document.getElementById('timer-display');
 const displayError = document.getElementById('error-display');
 const btnReiniciar = document.getElementById('restart-button');
+const btnRanking = document.getElementById('button-ranking');
+const btnInicio = document.getElementById('button-home');
 
 // Funções de ação ---------------------------------------------------
 
@@ -78,9 +81,9 @@ function finalizarPartida() {
     clearInterval(cronometro);
 
     alert(`Parabéns! Você terminou a frase. Você teve o total de erros: ${totalErrosPartida}`);
-    
-    telaJogo.classList.add('hidden');
-    document.getElementById('screen-ranking').classList.remove('hidden');
+
+    salvarResultado();
+    exibirRanking();
 }
 
 function resetarPartida() {
@@ -88,6 +91,58 @@ function resetarPartida() {
     carregarTexto();           // Sorteia novo texto, zera erros visualmente e variáveis
     iniciarCronometro();       // Zera o tempo e começa a contar
     campoDigitação.focus();    // Garante que o teclado continue ativo
+}
+
+function salvarResultado() {
+    const score = Math.max(0, 1000 - (tempoInicial * 5) - (totalErrosPartida * 20));
+    
+    const resultado = {
+        nome: inputNome.value.trim(),
+        tempo: tempoInicial,
+        erros: totalErrosPartida,
+        nivel: nivelSelecionado,
+        score: score,
+        data: new Date().toLocaleDateString('pt-BR')
+    };
+
+    // Lê o que já existe (ou começa com array vazio)
+    const rankingAtual = JSON.parse(localStorage.getItem('ranking') || '[]');
+    rankingAtual.push(resultado);
+    localStorage.setItem('ranking', JSON.stringify(rankingAtual));
+}
+
+function exibirRanking() {
+    const ranking = JSON.parse(localStorage.getItem('ranking') || '[]');
+    
+    // Ordena do maior score para o menor
+    ranking.sort((a, b) => b.score - a.score);
+    
+    const lista = document.getElementById('ranking-list');
+    
+    if (ranking.length === 0) {
+        lista.innerHTML = '<li>Nenhuma partida registrada ainda.</li>';
+    } else {
+        lista.innerHTML =  `
+            <li class="ranking-header">
+                <span>Posição</span>
+                <span>Jogador</span>
+                <span>Score</span>
+                <span>Detalhes</span>
+            </li>
+        ` + ranking.map((entrada, index) => `
+            <li class="ranking-item">
+                <span class="ranking-posicao">#${index + 1}</span>
+                <span class="ranking-nome">${entrada.nome}</span>
+                <span class="ranking-score">${entrada.score} pts</span>
+                <span class="ranking-detalhe">${entrada.tempo}s · ${entrada.erros} erros · ${entrada.nivel}</span>
+            </li>
+        `).join(''); // Junta todas as strings em uma só, sem nenhum separador entre elas.
+    }
+
+    // Troca a tela visível
+    telaSetup.classList.add('hidden');
+    telaJogo.classList.add('hidden');
+    telaRanking.classList.remove('hidden');
 }
 
 function atualizarCursor(){
@@ -186,3 +241,9 @@ campoDigitação.addEventListener('input', (event) => {
 });
 
 btnReiniciar.addEventListener('click', resetarPartida);
+btnRanking.addEventListener('click', exibirRanking);
+btnInicio.addEventListener('click', () => {
+    telaRanking.classList.add('hidden');
+    telaJogo.classList.add('hidden');
+    telaSetup.classList.remove('hidden');
+});
