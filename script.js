@@ -18,7 +18,8 @@ const bancoDeTextos = {
 
 let nivelSelecionado = "medio";
 let totalErrosPartida = 0;
-let tempoInicial = 0;
+let tempoRestante = 0;
+let tempoSelecionado = 30;
 let cronometro;
 
 // Pegando os elementos do HTML 
@@ -30,6 +31,7 @@ const inputNome = document.getElementById('player-name');
 const campoDigitação = document.getElementById('typing-input');
 const displayPalavras = document.getElementById('words-display');
 const botoesDificuldade = document.querySelectorAll('.level-button');
+const botoesTempo = document.querySelectorAll('.time-button');
 const displayTimer = document.getElementById('timer-display');
 const displayError = document.getElementById('error-display');
 const btnReiniciar = document.getElementById('restart-button');
@@ -77,10 +79,15 @@ function iniciarJogo() {
     console.log("Jogo iniciado por: " + nome);
 }
 
-function finalizarPartida() {
+function finalizarPartida(tempoEsgotado = false) {
     clearInterval(cronometro);
 
-    alert(`Parabéns! Você terminou a frase. Você teve o total de erros: ${totalErrosPartida}`);
+    // Se o tempo acabou e ele não terminou a frase, avisamos
+    if (tempoEsgotado) {
+        alert("O tempo acabou! Tente ser mais rápido na próxima.");
+    } else {
+        alert(`Parabéns! Você terminou a frase com ${totalErrosPartida} erros.`);
+    }
 
     salvarResultado();
     exibirRanking();
@@ -158,16 +165,20 @@ function atualizarCursor(){
     }
 }
 
-function iniciarCronometro(){
-    tempoInicial = 0;
-    displayTimer.innerText = `Tempo: 0s`;
+function iniciarCronometro() {
+    tempoRestante = tempoSelecionado;
+    displayTimer.innerText = `Tempo: ${tempoRestante}s`;
 
-    // Limpa qualquer cronômetro que já esteja rodando
-    clearInterval(cronometro)
+    clearInterval(cronometro);
 
     cronometro = setInterval(() => {
-        tempoInicial++;
-        displayTimer.innerText = `Tempo: ${tempoInicial}s`;
+        tempoRestante--;
+        displayTimer.innerText = `Tempo: ${tempoRestante}s`;
+
+        // Se o tempo acabar, finaliza o jogo automaticamente
+        if (tempoRestante <= 0) {
+            finalizarPartida(true); // true indica que o tempo acabou
+        }
     }, 1000);
 }
 
@@ -188,6 +199,16 @@ botoesDificuldade.forEach(botao => {
         nivelSelecionado = botao.getAttribute('data-level');
         
         console.log("Dificuldade alterada para: " + nivelSelecionado);
+    });
+});
+
+botoesTempo.forEach(botao => {
+    botao.addEventListener('click', () => {
+        botoesTempo.forEach(btn => btn.classList.remove('active'));
+        botao.classList.add('active');
+        
+        // Atualiza a variável global com o valor do data-time
+        tempoSelecionado = parseInt(botao.getAttribute('data-time'));
     });
 });
 

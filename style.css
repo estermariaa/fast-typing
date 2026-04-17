@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box; /* Não muda o tamanho do botão se adicionar borda */
-    font-family: 'Courier New', Courier, monospace; /* Fonte estilo código */
+    font-family: 'Courier New', monospace, Courier; /* Fonte estilo código */
 }
 
 body {
@@ -48,7 +48,61 @@ nav button:hover {
     text-align: center; /* Garante que se o texto quebrar linha, ele continue centralizado. */
 }
 
+.setup-toolbar {
+    position: absolute;
+    top: 105px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #252533;
+    padding: 12px 25px;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+.setup-toolbar .label {
+    font-size: 0.8rem;
+    color: #6272a4;
+    text-transform: uppercase;
+    margin-right: 10px;
+}
+
+.separator {
+    color: #44475a;
+    font-weight: bold;
+}
+
+.time-button {
+    background: None;
+    border: None;
+    color: #646669;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: 0.3;
+    font-size: 0.9rem;
+}
+
+.level-button {
+    background: none;
+    border: none;
+    color: #646669;
+    cursor: pointer;
+    transition: 0.3;
+    font-size: 0.9rem;
+}
+
+.time-button.active { color: #ff79c6; }
+.level-button.active { color: #ff79c6; } 
+
+.time-button:hover, .level-button:hover {
+    color: #f8f8f2;
+}
+
 #player-name {
+    font-family: 'Courier New', Courier, monospace;
     background-color: #252533;
     color: #d1d0c5;
     border: 2px solid #20202C;
@@ -128,6 +182,7 @@ nav button:hover {
 
 /* Input Invisível: o usuário pensa que está digitando nas palavras */
 #typing-input {
+    font-family: 'Courier New', Courier, monospace;
     position: absolute;
     opacity: 0; 
 }
@@ -138,18 +193,6 @@ nav button:hover {
     justify-content: center; /* Deixa os botões de dificuldade bem no meio da parte de baixo. */
     gap: 20px; /* Cria um espaço automático entre os botões */
     padding: 20px;
-}
-
-.level-button {
-    background: none;
-    border: none;
-    color: #646669;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-.level-button.active {
-    color: #14e2e2; /* Indica qual nível está selecionado */
 }
 
 .correto {

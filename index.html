@@ -21,8 +21,24 @@
      
     <!-- Corpo principal -->
     <main id="game-container">
-        
+
         <section id="screen-setup">
+            <div class="setup-toolbar">
+                <div class="level-selector">
+                    <button class="level-button" data-level="facil">Fácil</button>
+                    <button class="level-button active" data-level="medio">Médio</button>
+                    <button class="level-button" data-level="dificil">Difícil</button>
+                </div>
+
+                <div class="separator">|</div>
+
+                <div class="time-selector">
+                    <button class="time-button" data-time="15">15s</button>    
+                    <button class="time-button active" data-time="30">30s</button>
+                    <button class="time-button" data-time="60">60s</button>
+                </div>
+            </div>
+
             <h2>Bem-vindo!</h2>
             <input type="text" id="player-name" placeholder="Digite seu nome...">
             <p>Escolha a dificuldade no menu abaixo e clique em Iniciar.</p>
@@ -51,14 +67,7 @@
 
     <!-- Rodapé -->
     <footer id="config-bar">
-        <div class="level-selector">
-            <span class="label">Dificuldade</span>
-            <div class="options">
-                <button class="level-button" data-level="facil">Fácil</button>
-                <button class="level-button active" data-level="medio">Médio</button>
-                <button class="level-button" data-level="dificil">Difícil</button>
-            </div>
-        </div>
+        <p>Produzido por Ester Maria, Lucas Campelo, Mateus Brito</p>
     </footer>
 
     <script src="script.js"></script>
