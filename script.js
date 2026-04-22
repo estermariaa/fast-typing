@@ -87,10 +87,9 @@ function finalizarPartida(tempoEsgotado = false) {
         alert("O tempo acabou! Tente ser mais rápido na próxima.");
     } else {
         alert(`Parabéns! Você terminou a frase com ${totalErrosPartida} erros.`);
+        salvarResultado();
+        exibirRanking();
     }
-
-    salvarResultado();
-    exibirRanking();
 }
 
 function resetarPartida() {
@@ -100,21 +99,49 @@ function resetarPartida() {
     campoDigitação.focus();    // Garante que o teclado continue ativo
 }
 
+function formatarNome(nome) {
+    return nome
+        .trim()
+        .toLowerCase()
+        .replace(/\b\w/g, letra => letra.toUpperCase());
+}
+
 function salvarResultado() {
-    const score = Math.max(0, 1000 - (tempoInicial * 5) - (totalErrosPartida * 20));
+    const tempoUsado = tempoSelecionado - tempoRestante;
+
+    const score = Math.max(0, 1000 - (tempoUsado * 5) - (totalErrosPartida * 20));
+
+    const nomeFormatado = formatarNome(inputNome.value.trim());
     
     const resultado = {
-        nome: inputNome.value.trim(),
-        tempo: tempoInicial,
+        nome: nomeFormatado,
+        tempo: tempoSelecionado,
         erros: totalErrosPartida,
         nivel: nivelSelecionado,
         score: score,
-        data: new Date().toLocaleDateString('pt-BR')
     };
 
     // Lê o que já existe (ou começa com array vazio)
     const rankingAtual = JSON.parse(localStorage.getItem('ranking') || '[]');
-    rankingAtual.push(resultado);
+
+    // Procura se já existe alguém com MESMO nome + nível + tempo
+    const index = rankingAtual.findIndex(item =>
+        item.nome === nomeFormatado &&
+        item.nivel === nivelSelecionado &&
+        item.tempo === tempoSelecionado
+    );
+
+    if (index !== -1) {
+        // Já existe -> atualiza apenas se o score for melhor
+        if (score > rankingAtual[index].score) {
+            rankingAtual[index] = resultado;
+        }
+    } else {
+        // Não existe -> adiciona normalmente
+        rankingAtual.push(resultado);
+    }
+
+    // Salva de volta
     localStorage.setItem('ranking', JSON.stringify(rankingAtual));
 }
 

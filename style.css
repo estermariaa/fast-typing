@@ -243,7 +243,7 @@ nav button:hover {
     align-items: center;
     gap: 12px;
     width: 100%;
-    max-width: 700px;
+    max-width: 900px;
 }
 
 #screen-ranking h2 {
@@ -262,7 +262,7 @@ nav button:hover {
 
 .ranking-header {
     display: grid;
-    grid-template-columns: 40px 1fr 100px 180px;
+    grid-template-columns: 40px 410px 120px 240px;
     gap: 16px;
     padding: 0 20px 8px;
     font-size: 0.75rem;
@@ -274,7 +274,7 @@ nav button:hover {
 
 .ranking-item {
     display: grid;
-    grid-template-columns: 40px 1fr 100px 180px;
+    grid-template-columns: 40px 410px 120px 240px;
     /*                     #1   nome  pts   detalhes  */
     align-items: center;
     gap: 16px;
@@ -297,7 +297,6 @@ nav button:hover {
 }
 
 .ranking-nome {
-    flex-grow: 1; /* empurra o resto para a direita */
     font-size: 1rem;
     color: #f8f8f2;
     font-weight: bold;
@@ -312,6 +311,5 @@ nav button:hover {
 .ranking-detalhe {
     font-size: 0.8rem;
     color: #6272a4;
-    min-width: 180px;
-    text-align: left;
+    text-align: center;
 }
