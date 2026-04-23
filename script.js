@@ -1,18 +1,45 @@
 // Temporário
 const bancoDeTextos = {
     facil: [
-        "O gato subiu no telhado.",
-        "A lua brilha no ceu escuro.",
-        "Eu gosto de programar em JS."
+        "O conhecimento é a única ferramenta que ninguém pode tirar de você nesta longa jornada.",
+        "A prática constante leva à perfeição e ajuda a manter o foco em nossos objetivos principais.",
+        "Viver e aprender algo novo todos os dias é o segredo para uma mente sempre jovem e ativa.",
+        "O sol nasce no horizonte trazendo esperança para todos os seres vivos que habitam o planeta.",
+        "A música clássica tem o poder de alegrar a alma e acalmar os corações mais inquietos e ansiosos.",
+        "Caminhar ao ar livre faz muito bem para a saúde do corpo e também para o equilíbrio da mente.",
+        "O livro de receitas está sobre a mesa da sala aguardando o momento de prepararmos o jantar.",
+        "Chocolate amargo é o meu doce favorito de todos os tempos, especialmente em dias de chuva.",
+        "A pressa é reconhecida como a maior inimiga da perfeição em qualquer tarefa que realizamos.",
+        "Flores coloridas e perfumadas crescem no jardim da nossa casa durante toda a primavera."
     ],
     medio: [
-        "O aprendizado de maquina exige muita prática e dedicação.",
-        "Desenvolver sistemas na UFSJ é um desafio constante."
+        "A tecnologia deve servir prioritariamente para aproximar as pessoas e não para isolá-las do convívio social.",
+        "Não deixe para amanhã o que você pode realizar hoje com total dedicação, foco e determinação no resultado.",
+        "A leitura constante é uma porta aberta para mundos imaginários e conhecimentos que transformam a percepção.",
+        "O sucesso verdadeiro vem para quem trabalha com constância e não teme os diversos desafios do caminho.",
+        "Gentileza gera gentileza em qualquer lugar do mundo, basta apenas começar o dia com um sorriso sincero.",
+        "Viajar pelo mundo abre a nossa mente para novas culturas, idiomas e diferentes perspectivas sobre a vida.",
+        "A paciência é uma virtude essencial para lidar com os estresses cotidianos e as pressões da vida moderna.",
+        "Praticar esportes ajuda a manter a disciplina, a clareza mental e o vigor necessário para tomar decisões.",
+        "O silêncio muitas vezes comunica muito mais do que mil palavras jogadas ao vento sem nenhuma reflexão prévia.",
+        "Equilíbrio entre vida pessoal e profissional é a chave mestra para manter a saúde mental em dias difíceis."
     ],
     dificil: [
-        "A implementação de algoritmos complexos, como o Simplex, exige atenção aos detalhes.",
-        "Node.js permite executar JavaScript no lado do servidor com alta performance.",
-        "O desenvolvimento de interfaces responsivas utiliza conceitos avançados de CSS Flexbox."
+        "const response = await fetch('https://api.exemplo.com/v1/dados'); const data = await response.json(); console.log(data);",
+        "function calcularWPM(caracteres, tempoSegundos) { const palavras = caracteres / 5; return Math.round(palavras / (tempoSegundos / 60)); }",
+        "if (usuario.autenticado && usuario.permissao === 'administrador') { return <PainelAdmin dados={estatisticas} />; } else { return <AcessoNegado />; }",
+        "document.querySelectorAll('.botao-acao').forEach(item => { item.addEventListener('click', (evento) => evento.preventDefault()); });",
+        "A implementação de algoritmos complexos, como o Simplex, exige atenção absoluta aos detalhes matemáticos e lógica rigorosa.",
+        "O universo é uma esfera infinita cujo centro está em toda parte e a circunferência em lugar nenhum, afirmou o filósofo.",
+        "No meio do caminho tinha uma pedra, tinha uma pedra no meio do caminho, nunca me esquecerei desse acontecimento em minha vida.",
+        "Navegar é preciso, viver não é preciso; a alma deseja a glória eterna, mas o corpo físico teme a fúria da tempestade em alto mar.",
+        "export default class Jogador { constructor(nome, nivel) { this.nome = nome; this.nivel = nivel; this.pontuacao = 0; } }",
+        "const dadosFiltrados = resultados.filter(linha => linha.ativo).map(linha => linha.valor).reduce((acc, val) => acc + val, 0);",
+        "A persistência é o único caminho para o êxito de quem não teme os obstáculos inevitáveis que surgem ao longo da jornada.",
+        "Quanto mais eu treino com afinco e dedicação, mais sorte eu pareço ter nos momentos decisivos da minha carreira de desenvolvedor.",
+        "Array.from({ length: 10 }, (_, i) => i + 1).filter(n => n % 2 === 0).forEach(par => console.log('Número par encontrado:', par));",
+        "O tempo é um rio que corre para o mar do esquecimento, levando nossas memórias, nossos sonhos e nossas maiores conquistas históricas.",
+        "try { sistema.inicializar(); motor.ligar(); } catch (erro) { log.error('Falha crítica detectada no núcleo:', erro.stack); }"
     ]
 };
 

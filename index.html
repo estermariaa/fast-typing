@@ -40,9 +40,16 @@
             </div>
 
             <h2>Bem-vindo(a)!</h2>
-            <input type="text" id="player-name" placeholder="Digite seu nome...">
-            <p>Escolha a dificuldade no menu acima e clique em Iniciar.</p>
+
+            <div class="input-group">
+                <label for="player-name">Nome:</label>
+                <input type="text" id="player-name" placeholder="Digite seu nome...">
+            </div>
+
+            <p>Escolha a dificuldade no menu acima e clique em Iniciar.</p>            
+
             <button id="start-game-button">Iniciar</button>
+
         </section>
 
         <section id="screen-game" class="hidden">
@@ -67,7 +74,13 @@
 
     <!-- Rodapé -->
     <footer id="config-bar">
-        <p>Produzido por Ester Maria, Lucas Campelo, Mateus Brito</p>
+        <div class="footer-box">
+            <p>Produzido por: 
+                <a href="https://github.com/estermariaa" target="_blank" class="author-link">Ester Maria</a> |
+                <a href="https://github.com/zcampelo" target="_blank" class="author-link">Lucas Campelo</a> |
+                <a href="https://github.com/MateusoBrito" target="_blank" class="author-link">Mateus Brito</a>
+            </p>
+        </div>
     </footer>
 
     <script src="script.js"></script>

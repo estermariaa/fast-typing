@@ -11,14 +11,20 @@ body {
     height: 100vh; /* Altura da tela, vh pega a altura da tela do usuário*/
     display: flex; /* Organiza os elementos de forma responsiva */
     flex-direction: column; /* Empilha os itens: header, main, footer */
-    padding: 2rem;
+    padding: 0 0 2rem 0;
+    margin: 0;
 }
 
 #top-bar {
     display: flex;
     justify-content: space-between; /* Logo para um laod, botões para o outro */
     align-items: center; /* Alinha os textos verticalmente */
-    margin-bottom: 50px; /* Garante que o jogo não encoste na barra superior. */
+
+    background-color: #252533;
+    padding: 15px 40px;
+    border-bottom: 2px solid #20202C;
+    width: 100%;
+    margin-bottom: 30px; /* Header fixo no topo */
 }
 
 #top-bar .logo {
@@ -30,14 +36,16 @@ body {
 nav button {
     background: none;
     border: none;
-    color: #646669;
+    color: #f8f8f2;
     cursor: pointer;
     margin-left: 15px;
     transition: 0.3s;
 }
 
 nav button:hover {
-    color: #d1d0c5;
+    color: #bd93f9;           
+    cursor: pointer;
+    transition: 0.3s ease;   
 }
 
 #game-container {
@@ -188,10 +196,42 @@ nav button:hover {
 
 /* Barra de Baixo (Footer) */
 #config-bar {
+    margin-top: auto; /* Empurra para o fim da página */
+    padding: 2rem 0;
     display: flex;
-    justify-content: center; /* Deixa os botões de dificuldade bem no meio da parte de baixo. */
-    gap: 20px; /* Cria um espaço automático entre os botões */
-    padding: 20px;
+    justify-content: center;
+}
+
+.footer-box {
+    background-color: #252533;
+    padding: 12px 25px;
+    border-radius: 3px;
+    border: 1px solid #20202C;
+    display: flex;
+    align-items: center;
+}
+
+.footer-box p {
+    font-size: 0.85rem;
+    color: #f8f8f2; /* Cor neutra para o "Produzido por" */
+    letter-spacing: 1px;
+}
+
+.author-link {
+    color: #14e2e2; 
+    text-decoration: none; /* Tira o sublinhado padrão do link */
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.author-link:hover {
+    color: #6272a4; /* Muda quando passa o mouse */
+    text-decoration: underline; 
+    cursor: pointer;
+}
+
+.author-link:visited {
+    color: #14e2e2;
 }
 
 .correto {
