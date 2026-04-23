@@ -262,7 +262,7 @@ nav button:hover {
 
 .ranking-header {
     display: grid;
-    grid-template-columns: 40px 410px 120px 240px;
+    grid-template-columns: 40px 3fr 2fr 2fr;
     gap: 16px;
     padding: 0 20px 8px;
     font-size: 0.75rem;
@@ -274,7 +274,7 @@ nav button:hover {
 
 .ranking-item {
     display: grid;
-    grid-template-columns: 40px 410px 120px 240px;
+    grid-template-columns: 40px 3fr 2fr 2fr;
     /*                     #1   nome  pts   detalhes  */
     align-items: center;
     gap: 16px;
