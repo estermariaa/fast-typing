@@ -209,6 +209,19 @@ nav button:hover {
     border: 1px solid #20202C;
     display: flex;
     align-items: center;
+    gap: 12px;
+}
+
+.footer-github-icon {
+    width: 20px;
+    height: 20px;
+    filter: invert(48%) sepia(13%) saturate(1011%) hue-rotate(192deg) brightness(91%) contrast(85%);
+    transition: 0.3s;
+}
+
+.footer-box:hover .footer-github-icon {
+    filter: invert(100%);
+    transform: scale(1.1);
 }
 
 .footer-box p {
@@ -301,7 +314,7 @@ nav button:hover {
 
 .ranking-header {
     display: grid;
-    grid-template-columns: 40px 3fr 2fr 2fr;
+    grid-template-columns: 40px 410px 120px 240px;
     gap: 16px;
     padding: 0 20px 8px;
     font-size: 0.75rem;
@@ -313,7 +326,7 @@ nav button:hover {
 
 .ranking-item {
     display: grid;
-    grid-template-columns: 40px 3fr 2fr 2fr;
+    grid-template-columns: 40px 410px 120px 240px;
     /*                     #1   nome  pts   detalhes  */
     align-items: center;
     gap: 16px;
