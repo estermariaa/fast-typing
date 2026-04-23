@@ -6,7 +6,7 @@ const bancoDeTextos = {
         "Eu gosto de programar em JS."
     ],
     medio: [
-        "O aprendizado de maquina exige muita prática e dedidação.",
+        "O aprendizado de maquina exige muita prática e dedicação.",
         "Desenvolver sistemas na UFSJ é um desafio constante."
     ],
     dificil: [

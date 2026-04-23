@@ -96,7 +96,6 @@ nav button:hover {
 
 .time-button.active { color: #ff79c6; }
 .level-button.active { color: #ff79c6; } 
-
 .time-button:hover, .level-button:hover {
     color: #f8f8f2;
 }
