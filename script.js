@@ -64,7 +64,7 @@ const displayError = document.getElementById('error-display');
 const btnReiniciar = document.getElementById('restart-button');
 const btnRanking = document.getElementById('button-ranking');
 const btnInicio = document.getElementById('button-home');
-
+const btnTema = document.getElementById("theme-toggle");
 // Funções de ação ---------------------------------------------------
 
 function carregarTexto() {
@@ -256,6 +256,14 @@ botoesDificuldade.forEach(botao => {
     });
 });
 
+document.addEventListener("keydown", (event) =>{
+    if(event.key == "Enter"){
+        if(!telaSetup.classList.contains('hidden')){
+            iniciarJogo();
+        }
+    }
+});
+
 botoesTempo.forEach(botao => {
     botao.addEventListener('click', () => {
         botoesTempo.forEach(btn => btn.classList.remove('active'));
@@ -321,4 +329,14 @@ btnInicio.addEventListener('click', () => {
     telaRanking.classList.add('hidden');
     telaJogo.classList.add('hidden');
     telaSetup.classList.remove('hidden');
+});
+
+btnTema.addEventListener("click", () => {
+    document.body.classList.toggle("light-mode");
+
+    if (document.body.classList.contains("light-mode")) {
+        btnTema.textContent = "🌞";
+    } else {
+        btnTema.textContent = "🌙";
+    }
 });

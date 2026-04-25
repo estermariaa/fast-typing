@@ -5,9 +5,36 @@
     font-family: 'Courier New', monospace, Courier; /* Fonte estilo código */
 }
 
+:root {
+    --bg: #282a36;
+    --bg-secondary: #252533;
+    --border: #20202C;
+    --text-off: #646669;
+    --text: #f8f8f2;
+    --text-soft: #6272a4;
+    --primary: #ff79c6;
+    --secondary: #bd93f9;
+    --names: #14e2e2;
+    --certos: #22ce4a;
+    --errados: #ff5555;
+}
+
+body.light-mode {
+    --bg: #ffffff;
+    --bg-secondary: #ECECEC;
+    --border: #dcdcdc;
+    --text: #222222;
+    --text-soft: #666666;
+    --primary: #FF0002;
+    --secondary: #ff5353;
+    --names: #14e2e2;
+    --certos: #22ce4a;
+    --errados: #ff5555;
+}
+
 body {
-    background-color: #282a36; /* Cor de fundo*/
-    color: #f8f8f2; /* Cor do texto*/
+    background-color: var(--bg); /* Cor de fundo*/
+    color: var(--text); /* Cor do texto*/
     height: 100vh; /* Altura da tela, vh pega a altura da tela do usuário*/
     display: flex; /* Organiza os elementos de forma responsiva */
     flex-direction: column; /* Empilha os itens: header, main, footer */
@@ -20,9 +47,9 @@ body {
     justify-content: space-between; /* Logo para um laod, botões para o outro */
     align-items: center; /* Alinha os textos verticalmente */
 
-    background-color: #252533;
+    background-color: var(--bg-secondary);
     padding: 15px 40px;
-    border-bottom: 2px solid #20202C;
+    border-bottom: 2px solid var(--border);
     width: 100%;
     margin-bottom: 30px; /* Header fixo no topo */
 }
@@ -30,20 +57,20 @@ body {
 #top-bar .logo {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #ff79c6; 
+    color: var(--primary); 
 }
 
 nav button {
     background: none;
     border: none;
-    color: #f8f8f2;
+    color: var(--text);
     cursor: pointer;
     margin-left: 15px;
     transition: 0.3s;
 }
 
 nav button:hover {
-    color: #bd93f9;           
+    color: var(--secondary);           
     cursor: pointer;
     transition: 0.3s ease;   
 }
@@ -65,7 +92,7 @@ nav button:hover {
     display: flex;
     align-items: center;
     gap: 20px;
-    background-color: #252533;
+    background-color: var(--bg-secondary);
     padding: 12px 25px;
     border-radius: 3px;
     white-space: nowrap;
@@ -73,20 +100,20 @@ nav button:hover {
 
 .setup-toolbar .label {
     font-size: 0.8rem;
-    color: #6272a4;
+    color: var(--text-soft);
     text-transform: uppercase;
     margin-right: 10px;
 }
 
 .separator {
-    color: #44475a;
+    color: var(--text-off);
     font-weight: bold;
 }
 
 .time-button {
     background: None;
     border: None;
-    color: #646669;
+    color: var(--text-off);
     margin: 0 5px;
     cursor: pointer;
     transition: 0.3;
@@ -96,23 +123,23 @@ nav button:hover {
 .level-button {
     background: none;
     border: none;
-    color: #646669;
+    color: var(--text-off);
     cursor: pointer;
     transition: 0.3;
     font-size: 0.9rem;
 }
 
-.time-button.active { color: #ff79c6; }
-.level-button.active { color: #ff79c6; } 
+.time-button.active { color: var(--primary); }
+.level-button.active { color: var(--primary); } 
 .time-button:hover, .level-button:hover {
-    color: #f8f8f2;
+    color: var(--text);
 }
 
 #player-name {
     font-family: 'Courier New', Courier, monospace;
-    background-color: #252533;
-    color: #d1d0c5;
-    border: 2px solid #20202C;
+    background-color: var(--bg-secondary);
+    color: var(--text);
+    border: 2px solid var(--border);
     border-radius: 3px;
     padding: 10px 22px; /* Espaçamento interno: cima/baixo e lados */
     font-size: 1.1rem;
@@ -125,18 +152,18 @@ nav button:hover {
 
 /* Efeito quando o jogador clica para digitar */
 #player-name:focus {
-    border-color: #ff79c6;
+    border-color: var(--primary);
 }
 
 /* Estilo do texto de ajuda (Placeholder) */
 #player-name::placeholder {
-    color: #d1d0c5;
+    color: var(--text);
     opacity: 0.7;
 }
 
 #start-game-button {
-    background-color: #252533;
-    color: #d1d0c5;
+    background-color: var(--bg-secondary);
+    color: var(--text);
     border: none;
     border-radius: 3px;
     padding: 10px 15px;
@@ -147,7 +174,7 @@ nav button:hover {
 }
 
 #start-game-button:hover {
-    background-color: #bd93f9; /* Muda para roxo ao passar o mouse */
+    background-color: var(--secondary); /* Muda para roxo ao passar o mouse */
     transform: scale(1.05);    /* Dá um leve "pulo" ao passar o mouse */
 }
 
@@ -158,7 +185,7 @@ nav button:hover {
     justify-content: center;
     gap: 20px; /* Espaço entre o tempo e os erros */
 
-    background-color: #252533;
+    background-color: var(--bg-secondary);
     padding: 10px 22px; /* Espaçamento interno: cima/baixo e lados */
     border-radius: 3px;
     margin-bottom: 35px;
@@ -167,7 +194,7 @@ nav button:hover {
 #timer-display, #error-display {
     background: none;
     padding: 0;
-    color: #ff79c6;
+    color: var(--text);
     font-size: 1.1rem;
     font-weight: bold;
     transition: all 0.3s ease;
@@ -183,7 +210,7 @@ nav button:hover {
     font-size: 1.5rem;
     line-height: 2rem;
     max-width: 800px;
-    color: #6272a4; /* Palavras que ainda não foram digitadas ficam "apagadas" */
+    color: var(--text-soft); /* Palavras que ainda não foram digitadas ficam "apagadas" */
     margin-bottom: 20px;
 }
 
@@ -203,10 +230,10 @@ nav button:hover {
 }
 
 .footer-box {
-    background-color: #252533;
+    background-color: var(--bg-secondary);
     padding: 12px 25px;
     border-radius: 3px;
-    border: 1px solid #20202C;
+    border: 1px solid var(--border);
     display: flex;
     align-items: center;
     gap: 12px;
@@ -226,46 +253,46 @@ nav button:hover {
 
 .footer-box p {
     font-size: 0.85rem;
-    color: #f8f8f2; /* Cor neutra para o "Produzido por" */
+    color: var(--text); /* Cor neutra para o "Produzido por" */
     letter-spacing: 1px;
 }
 
 .author-link {
-    color: #14e2e2; 
+    color: var(--names); 
     text-decoration: none; /* Tira o sublinhado padrão do link */
     font-weight: bold;
     transition: 0.3s ease;
 }
 
 .author-link:hover {
-    color: #6272a4; /* Muda quando passa o mouse */
+    color: var(--text-soft); /* Muda quando passa o mouse */
     text-decoration: underline; 
     cursor: pointer;
 }
 
 .author-link:visited {
-    color: #14e2e2;
+    color: var(--names);
 }
 
 .correto {
-    color: #22ce4a !important; /* Branco quando acerta */
+    color: var(--certos) !important; /* Branco quando acerta */
 }
 
 .incorreto {
-    color: #ff5555 !important;
+    color: var(--errados) !important;
     background-color: rgba(255, 85, 85, 0.2);
     border-radius: 2px;
 }
 
 .cursor{
-    border-left: 2px solid #ff79c6;
+    border-left: 2px solid var(--primary);
     animation: piscar 1s infinite;
     margin-left: -1px;
 }
 
 @keyframes piscar {
     0%, 100% {border-color: transparent; }
-    50% {border-color: #ff79c6; }
+    50% {border-color: var(--primary); }
 }
 
 #restart-button {
@@ -300,7 +327,7 @@ nav button:hover {
 
 #screen-ranking h2 {
     font-size: 1.5rem;
-    color: #ff79c6;
+    color: var(--primary);
     margin-bottom: 8px;
 }
 
@@ -318,10 +345,10 @@ nav button:hover {
     gap: 16px;
     padding: 0 20px 8px;
     font-size: 0.75rem;
-    color: #6272a4;
+    color: var(--text-soft);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    border-bottom: 1px solid #44475a;
+    border-bottom: 1px solid var(--bg-secondary);
 }
 
 .ranking-item {
@@ -330,38 +357,48 @@ nav button:hover {
     /*                     #1   nome  pts   detalhes  */
     align-items: center;
     gap: 16px;
-    background-color: #252533;
+    background-color: var(--bg-secondary);
     padding: 14px 20px;
     border-radius: 6px;
-    border-left: 3px solid #44475a;
+    border-left: 3px solid var(--text-off);
     transition: border-color 0.2s ease;
 }
 
 .ranking-item:hover {
-    border-left-color: #ff79c6;
+    border-left-color: var(--primary);
 }
 
 .ranking-posicao {
     font-size: 1rem;
     font-weight: bold;
-    color: #6272a4;
+    color: var(--text-soft);
     min-width: 32px;
 }
 
 .ranking-nome {
     font-size: 1rem;
-    color: #f8f8f2;
+    color: var(text);
     font-weight: bold;
 }
 
 .ranking-score {
     font-size: 1rem;
-    color: #ff79c6;
+    color: var(--primary);
     font-weight: bold;
 }
 
 .ranking-detalhe {
     font-size: 0.8rem;
-    color: #6272a4;
+    color: --text-soft;
     text-align: center;
+}
+
+#theme-toggle {
+    width: 100px;
+    height: 50px;
+    background-color: var(--bg); /* Cor padrão (Dracula/Dark) */
+    border: none;
+    cursor: pointer;
+    position: relative;
+    padding: 0;
 }
