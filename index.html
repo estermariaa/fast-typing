@@ -66,10 +66,33 @@
         </section>
 
         <section id="screen-ranking" class="hidden">
-            <h2>🏆 Ranking Geral</h2>
-            <ul id="ranking-list"></ul>
-        </section>
+            <div class="ranking-layout">
+                <!-- Painel lateral -->
+                <aside class="ranking-sidebar">
+                    <div class="filter-group">
+                        <p class="filter-label">Dificuldade</p>
+                        <button class="filter-btn active" data-filter-level="geral">Geral</button>
+                        <button class="filter-btn" data-filter-level="facil">Fácil</button>
+                        <button class="filter-btn" data-filter-level="medio">Médio</button>
+                        <button class="filter-btn" data-filter-level="dificil">Difícil</button>
+                    </div>
 
+                    <div class="filter-group">
+                        <p class="filter-label">Tempo</p>
+                        <button class="filter-btn active" data-filter-time="geral">Geral</button>
+                        <button class="filter-btn" data-filter-time="15">15s</button>
+                        <button class="filter-btn" data-filter-time="30">30s</button>
+                        <button class="filter-btn" data-filter-time="60">60s</button>
+                    </div>
+                </aside>
+
+                <!-- Tabela de ranking -->
+                <div class="ranking-content">
+                    <h2>🏆 Ranking</h2>
+                    <ul id="ranking-list"></ul>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Rodapé -->

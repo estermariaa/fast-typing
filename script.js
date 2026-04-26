@@ -48,6 +48,9 @@ let totalErrosPartida = 0;
 let tempoRestante = 0;
 let tempoSelecionado = 30;
 let cronometro;
+let filtroNivel = "geral";
+let filtroTempo = "geral";
+
 
 // Pegando os elementos do HTML 
 const buttonComeçar = document.getElementById('start-game-button');
@@ -65,6 +68,7 @@ const btnReiniciar = document.getElementById('restart-button');
 const btnRanking = document.getElementById('button-ranking');
 const btnInicio = document.getElementById('button-home');
 const btnTema = document.getElementById("theme-toggle");
+
 // Funções de ação ---------------------------------------------------
 
 function carregarTexto() {
@@ -174,33 +178,38 @@ function salvarResultado() {
 
 function exibirRanking() {
     const ranking = JSON.parse(localStorage.getItem('ranking') || '[]');
-    
-    // Ordena do maior score para o menor
-    ranking.sort((a, b) => b.score - a.score);
-    
+
+    // Filtra conforme seleção
+    const filtrado = ranking.filter(entrada => {
+        const nivelOk = filtroNivel === "geral" || entrada.nivel === filtroNivel;
+        const tempoOk = filtroTempo === "geral" || entrada.tempo === parseInt(filtroTempo);
+        return nivelOk && tempoOk;
+    });
+
+filtrado.sort((a, b) => b.score - a.score);
+     
     const lista = document.getElementById('ranking-list');
     
-    if (ranking.length === 0) {
-        lista.innerHTML = '<li>Nenhuma partida registrada ainda.</li>';
+    if (filtrado.length === 0) {
+        lista.innerHTML = '<li class="ranking-vazio">Nenhuma partida encontrada.</li>';
     } else {
-        lista.innerHTML =  `
+        lista.innerHTML = `
             <li class="ranking-header">
                 <span>Posição</span>
                 <span>Jogador</span>
                 <span>Score</span>
                 <span>Detalhes</span>
             </li>
-        ` + ranking.map((entrada, index) => `
+        ` + filtrado.map((entrada, index) => `
             <li class="ranking-item">
                 <span class="ranking-posicao">#${index + 1}</span>
                 <span class="ranking-nome">${entrada.nome}</span>
                 <span class="ranking-score">${entrada.score} pts</span>
                 <span class="ranking-detalhe">${entrada.tempo}s · ${entrada.erros} erros · ${entrada.nivel}</span>
             </li>
-        `).join(''); // Junta todas as strings em uma só, sem nenhum separador entre elas.
+        `).join('');
     }
 
-    // Troca a tela visível
     telaSetup.classList.add('hidden');
     telaJogo.classList.add('hidden');
     telaRanking.classList.remove('hidden');
@@ -235,6 +244,25 @@ function iniciarCronometro() {
         }
     }, 1000);
 }
+
+// Listeners dos filtros
+document.querySelectorAll('[data-filter-level]').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-filter-level]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filtroNivel = btn.getAttribute('data-filter-level');
+        exibirRanking();
+    });
+});
+
+document.querySelectorAll('[data-filter-time]').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-filter-time]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filtroTempo = btn.getAttribute('data-filter-time');
+        exibirRanking();
+    });
+});
 
 // Gatilhos ----------------------------------------------
 
