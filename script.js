@@ -363,8 +363,8 @@ btnTema.addEventListener("click", () => {
     document.body.classList.toggle("light-mode");
 
     if (document.body.classList.contains("light-mode")) {
-        btnTema.textContent = "🌞";
+        btnTema.textContent = "☀";
     } else {
-        btnTema.textContent = "🌙";
+        btnTema.textContent = "☾";
     }
 });

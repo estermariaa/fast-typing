@@ -27,7 +27,7 @@ body.light-mode {
     --text-soft: #666666;
     --primary: #FF0002;
     --secondary: #ff5353;
-    --names: #14e2e2;
+    --names: #1474e2;
     --certos: #22ce4a;
     --errados: #ff5555;
 }
@@ -54,8 +54,9 @@ body {
     margin-bottom: 30px; /* Header fixo no topo */
 }
 
-#top-bar .logo {
-    font-size: 1.5rem;
+#logo {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 2.0rem;
     font-weight: bold;
     color: var(--primary); 
 }
@@ -223,10 +224,13 @@ nav button:hover {
 
 /* Barra de Baixo (Footer) */
 #config-bar {
-    margin-top: auto; /* Empurra para o fim da página */
+    margin-top: auto;
     padding: 2rem 0;
+    position: relative;
+
     display: flex;
-    justify-content: center;
+    justify-content: center; 
+    align-items: center;
 }
 
 .footer-box {
@@ -464,11 +468,13 @@ nav button:hover {
 }
 
 #theme-toggle {
-    width: 100px;
-    height: 50px;
-    background-color: var(--bg); /* Cor padrão (Dracula/Dark) */
+    position: absolute;
+    right: 40px;   
+    
+    color: var(--text);
+    background: none;
     border: none;
+    font-size: 1.6rem;
     cursor: pointer;
-    position: relative;
-    padding: 0;
+    transition: 0.6s ease;
 }
