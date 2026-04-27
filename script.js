@@ -116,6 +116,7 @@ function finalizarPartida(tempoEsgotado = false) {
     // Se o tempo acabou e ele não terminou a frase, avisamos
     if (tempoEsgotado) {
         alert("O tempo acabou! Tente ser mais rápido na próxima.");
+        resetarPartida();
     } else {
         alert(`Parabéns! Você terminou a frase com ${totalErrosPartida} erros.`);
         salvarResultado();
@@ -354,6 +355,8 @@ campoDigitação.addEventListener('input', (event) => {
 btnReiniciar.addEventListener('click', resetarPartida);
 btnRanking.addEventListener('click', exibirRanking);
 btnInicio.addEventListener('click', () => {
+    clearInterval(cronometro);
+
     telaRanking.classList.add('hidden');
     telaJogo.classList.add('hidden');
     telaSetup.classList.remove('hidden');
@@ -363,8 +366,8 @@ btnTema.addEventListener("click", () => {
     document.body.classList.toggle("light-mode");
 
     if (document.body.classList.contains("light-mode")) {
-        btnTema.textContent = "☀";
+        btnTema.textContent = "Light ☀";
     } else {
-        btnTema.textContent = "☾";
+        btnTema.textContent = "Dark ☾";
     }
 });
