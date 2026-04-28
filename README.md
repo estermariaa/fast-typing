@@ -23,6 +23,6 @@ Um jogo interativo de teste de velocidade e precisão de digitação. O projeto 
 ## ✒️ Autores
 - Ester Maria - https://github.com/estermariaa
 
-- Lucas Campelo - https://github.com/zcampelo
+- Lucas Campelo - https://github.com/lucasocampelo
 
 - Mateus Brito - https://github.com/MateusoBrito

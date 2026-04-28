@@ -120,6 +120,12 @@ function finalizarPartida(tempoEsgotado = false) {
     } else {
         alert(`Parabéns! Você terminou a frase com ${totalErrosPartida} erros.`);
         salvarResultado();
+
+        // Aplica os filtros da partida antes de exibir o ranking
+        filtroNivel = nivelSelecionado;
+        filtroTempo = String(tempoSelecionado);
+        sincronizarFiltrosVisuais();
+        
         exibirRanking();
     }
 }
@@ -141,7 +147,7 @@ function formatarNome(nome) {
 function salvarResultado() {
     const tempoUsado = tempoSelecionado - tempoRestante;
 
-    const score = Math.max(0, 1000 - (tempoUsado * 5) - (totalErrosPartida * 20));
+    const score = Math.max(0, 1000 - (tempoUsado * 10) - (totalErrosPartida * 20));
 
     const nomeFormatado = formatarNome(inputNome.value.trim());
     
@@ -246,7 +252,17 @@ function iniciarCronometro() {
     }, 1000);
 }
 
-// Listeners dos filtros
+function sincronizarFiltrosVisuais() {
+    document.querySelectorAll('[data-filter-level]').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-filter-level') === filtroNivel);
+    });
+    document.querySelectorAll('[data-filter-time]').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-filter-time') === String(filtroTempo));
+    });
+}
+
+// Listeners dos filtros ----------------------------------------------
+
 document.querySelectorAll('[data-filter-level]').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('[data-filter-level]').forEach(b => b.classList.remove('active'));
